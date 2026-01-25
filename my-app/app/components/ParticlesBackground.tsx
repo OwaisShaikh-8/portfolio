@@ -33,7 +33,7 @@ const ParticlesBackground = () => {
           onClick: { enable: true, mode: "push" },
         },
         modes: {
-          push: { quantity: 10 },
+          push: { quantity: 3 },
         },
       },
       particles: {
@@ -41,7 +41,7 @@ const ParticlesBackground = () => {
         links: {
           enable: true,
           color: "#6ae3ff",
-          distance: 250,
+          distance: 200,
           opacity: .5,
           width: 1,
         },
