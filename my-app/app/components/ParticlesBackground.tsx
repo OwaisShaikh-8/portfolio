@@ -36,11 +36,11 @@ const ParticlesBackground = () => {
       fpsLimit: isMobile ? 30 : 60, // Reduced FPS, especially on mobile
       interactivity: {
         events: {
-          onClick: { enable: !isMobile, mode: "push" }, // Disable on mobile
+          onClick: { mode: "push" }, // Disable on mobile
           onHover: { enable: false }, // Disabled to save performance
         },
         modes: {
-          push: { quantity: 2 },
+          push: { quantity: isMobile ? 1 : 2 },
         },
       },
       particles: {
@@ -61,7 +61,7 @@ const ParticlesBackground = () => {
           outModes: { default: "bounce" },
         },
         number: { 
-          value: isMobile ? 20 : 50, // Fewer particles on mobile
+          value: isMobile ? 40 : 50, // Fewer particles on mobile
           density: { 
             enable: true,
             width: 1920,
