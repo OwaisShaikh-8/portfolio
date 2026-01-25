@@ -7,6 +7,7 @@ import { loadSlim } from "@tsparticles/slim";
 
 const ParticlesBackground = () => {
   const [init, setInit] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -14,15 +15,21 @@ const ParticlesBackground = () => {
     }).then(() => setInit(true));
   }, []);
 
+  // Check mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const particlesLoaded = async (container?: Container) => {
     console.log("Particles loaded:", container);
   };
-
-  // Detect if device is mobile for performance optimization
-  const isMobile = useMemo(() => {
-    if (typeof window === 'undefined') return false;
-    return window.innerWidth < 768;
-  }, []);
 
   const options: ISourceOptions = useMemo(
     () => ({
@@ -33,11 +40,11 @@ const ParticlesBackground = () => {
         enable: false,
         zIndex: 0,
       },
-      fpsLimit: isMobile ? 30 : 60, // Reduced FPS, especially on mobile
+      fpsLimit: isMobile ? 30 : 60,
       interactivity: {
         events: {
-          onClick: { enable: isMobile, mode: "push" }, // Disable on mobile
-          onHover: { enable: false }, // Disabled to save performance
+          onClick: { enable: !isMobile, mode: "push" }, // Fixed: disabled on mobile
+          onHover: { enable: false },
         },
         modes: {
           push: { quantity: isMobile ? 1 : 2 },
@@ -48,20 +55,20 @@ const ParticlesBackground = () => {
         links: {
           enable: true,
           color: "#6ae3ff",
-          distance: isMobile ? 150 : 250, // Shorter distance on mobile
+          distance: isMobile ? 150 : 250,
           opacity: 0.8,
           width: 1,
         },
         move: {
           enable: true,
-          speed: isMobile ? 0.5 : 0.8, // Slower movement
+          speed: isMobile ? 0.5 : 0.8,
           direction: "none",
           random: false,
           straight: false,
           outModes: { default: "bounce" },
         },
         number: { 
-          value: isMobile ? 40 : 50, // Fewer particles on mobile
+          value: isMobile ? 40 : 50,
           density: { 
             enable: true,
             width: 1920,
@@ -73,8 +80,8 @@ const ParticlesBackground = () => {
         size: { value: { min: 1, max: 1 } },
       },
       detectRetina: true,
-      pauseOnBlur: true, // Pause when tab is not active
-      pauseOnOutsideViewport: true, // Pause when not visible
+      pauseOnBlur: true,
+      pauseOnOutsideViewport: true,
     }),
     [isMobile],
   );
@@ -86,7 +93,7 @@ const ParticlesBackground = () => {
       id="tsparticles"
       options={options}
       particlesLoaded={particlesLoaded}
-      className="absolute inset-0 w-full h-full pointer-events-none" // Added pointer-events-none for better performance
+      className="absolute inset-0 w-full h-full pointer-events-none"
     />
   );
 };
