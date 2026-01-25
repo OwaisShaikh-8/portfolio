@@ -43,7 +43,7 @@ const ParticlesBackground = () => {
       fpsLimit: isMobile ? 30 : 60,
       interactivity: {
         events: {
-          onClick: { enable: !isMobile, mode: "push" }, // Fixed: disabled on mobile
+          onClick: { enable: true, mode: "push" }, // Fixed: disabled on mobile
           onHover: { enable: false },
         },
         modes: {
