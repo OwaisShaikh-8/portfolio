@@ -36,7 +36,7 @@ const ParticlesBackground = () => {
       fpsLimit: isMobile ? 30 : 60, // Reduced FPS, especially on mobile
       interactivity: {
         events: {
-          onClick: { mode: "push" }, // Disable on mobile
+          onClick: { enable: isMobile, mode: "push" }, // Disable on mobile
           onHover: { enable: false }, // Disabled to save performance
         },
         modes: {
