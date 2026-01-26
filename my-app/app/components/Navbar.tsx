@@ -23,7 +23,7 @@ const Navbar = () => {
         type: "spring",
         stiffness: 120,
         damping: 20,
-        duration: 0,
+        duration: 2,
       }}
       className={`fixed top-0 w-full z-50 transition-all duration-300
         ${

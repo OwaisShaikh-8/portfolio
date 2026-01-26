@@ -41,3 +41,40 @@ body {
 .floatingspan{
   animation: floatUpDown 2s cubic-bezier(0.4, 0, 0.6, 1) infinite
 }
+
+
+/* CSS */
+.button-87 {
+  margin: 10px;
+  padding: 15px 30px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: #0b1c24;
+  border-radius: 10px;
+  display: block;
+  border: 0;
+  font-weight: 700;
+  box-shadow: 0px 0px 14px -7px #6ae3ff;
+  background-image: linear-gradient(
+    45deg,
+    #6ae3ff 0%,
+    #38c7e0 51%,
+    #6ae3ff 100%
+  );
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-87:hover {
+  background-position: right center;
+  color: #0b1c24;
+  text-decoration: none;
+}
+
+.button-87:active {
+  transform: scale(0.95);
+}

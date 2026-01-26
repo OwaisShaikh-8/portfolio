@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, Variant, Variants } from "framer-motio
 import { Typewriter } from "react-simple-typewriter";
 import { useScrolling } from "./hooks/navbar-scroll";
 import ParticlesBackground from "./components/ParticlesBackground";
+import Link from "next/link";
 
 export default function Home() {
   const scaleX = useScrolling();
@@ -42,7 +43,7 @@ export default function Home() {
 
         {/* Content layer */}
         <motion.div
-          className="relative z-10 flex flex-col pt-[200px] container text-center"
+          className="relative z-10 flex flex-col pt-32 md:pt-40 container text-center"
           variants={fadeInVariants}
           initial="hidden"
           animate="visible"
@@ -56,7 +57,7 @@ export default function Home() {
           </motion.span>
 
           <motion.h1
-            className="text-center h-[110px] mt-[50px] mb-0 md:mb-[10px] text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tight mx-auto bg-gradient-to-b from-white to-[#7c7b7b] bg-clip-text text-transparent"
+            className="text-center h-[110px] mt-[30px] mb-0 md:mb-[10px] text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tight mx-auto bg-gradient-to-b from-white to-[#7c7b7b] bg-clip-text text-transparent"
             variants={childVariants}
           >
             <Typewriter
@@ -75,13 +76,23 @@ export default function Home() {
           </motion.h1>
 
           <motion.p
-            className="text-txtdim text-[18px] md:text-[20px] max-w-2xl mx-auto"
+            className="text-txtdim text-[18px] md:text-[20px] max-w-2xl mx-auto mb-10"
             variants={childVariants}
           >
             Crafting scalable solutions with modern technologies. Passionate
             about building high-performance applications and solving complex
             problems.
           </motion.p>
+              <motion.div className="flex flex-col md:flex-row mx-auto text-txt gap-4">
+              <Link href="" className="py-4 px-6 button-87 rounded-full">
+              View Selected Work
+              </Link>
+              <Link href="" className="py-4 px-6 bg-base border border-borderclr rounded-full">
+              Book Call
+              </Link>
+
+              </motion.div>
+
         </motion.div>
       </section>
 
