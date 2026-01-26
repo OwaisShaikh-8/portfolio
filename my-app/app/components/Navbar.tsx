@@ -1,7 +1,7 @@
 "use client";
 import navImg from "@/public/assets/images/nav-img.jpg";
 import React, { useState } from "react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent,AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 const navLinks = ["Tech Stack", "Experience", "Education", "Projects"];
@@ -75,14 +75,16 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, setIsOpen }) => {
         >
           ☰
         </button>
+<AnimatePresence>
+
 
         {/* Mobile Menu */}
         {isOpen && (
           <motion.div
             className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center md:hidden"
-            initial={{ x: "100%", opacity: 0 }} // Start off-screen to the right
-            animate={{ x: 0, opacity: 1 }} // Slide to original position
-            exit={{ x: "100%", opacity: 0 }} // Optional: animate exit back to right
+            initial={{ x: "100%", rotate: 90, opacity: 0 }} // start off-screen and rotated
+            animate={{ x: 0, rotate: 0, opacity: 1 }} // slide in and straighten
+            exit={{ x: "100%", rotate: 90, opacity: 0 }} // slide out with roll
             transition={{
               type: "spring",
               stiffness: 120,
@@ -125,6 +127,7 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, setIsOpen }) => {
             </ul>
           </motion.div>
         )}
+        </AnimatePresence>
       </nav>
     </motion.header>
   );
