@@ -81,7 +81,7 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, setIsOpen }) => {
         {/* Mobile Menu */}
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center md:hidden"
+            className="absolute w-screen h-screen top-0 left-0 right-0 bottom-0 z-50 bg-black/90 backdrop-blur-xl flex items-center justify-center md:hidden"
             initial={{ x: "100%", rotate: 90, opacity: 0 }} // start off-screen and rotated
             animate={{ x: 0, rotate: 0, opacity: 1 }} // slide in and straighten
             exit={{ x: "100%", rotate: 90, opacity: 0 }} // slide out with roll
@@ -118,8 +118,7 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, setIsOpen }) => {
 
               <button
                 className="mt-6 rounded-full bg-primary px-8 py-4 text-lg text-black 
-                    shadow-[0_10px_20px_rgba(0,0,0,0.25)] 
-                    hover:shadow-[0_15px_25px_rgba(0,0,0,0.35)] 
+                    shadow-2xl
                     transition-shadow duration-300"
               >
                 Let’s talk
