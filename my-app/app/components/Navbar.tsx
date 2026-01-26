@@ -3,8 +3,16 @@ import navImg from "@/public/assets/images/nav-img.jpg";
 import React, { useState } from "react";
 import { motion, useScroll, useMotionValueEvent,AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
-const navLinks = ["Tech Stack", "Experience", "Education", "Projects"];
+const navLinks = [
+  { label: "About", href: "#about" },
+  { label: "Tech Stack", href: "#tech" },
+  { label: "Experience", href: "#experience" },
+  { label: "Education", href: "#education" },
+  { label: "Projects", href: "#projects" },
+];
+
 
 interface NavbarProps {
   isOpen: boolean;
@@ -50,15 +58,16 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, setIsOpen }) => {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-10">
           <ul className="flex gap-8 text-txtdim">
-            {navLinks.map((item) => (
-              <li key={item} className="relative group">
-                <a
-                  href="#"
+            {navLinks.map((item,index) => (
+              <li key={index} className="relative group">
+                <Link
+                  href={item.href}
                   className="inline-block transition-colors duration-300 group-hover:text-txt"
+                  scroll={true}
                 >
-                  {item}
+                  {item.label}
                   <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -107,12 +116,12 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, setIsOpen }) => {
                 />
               </span>
 
-              {navLinks.map((item) => (
+              {navLinks.map((item,index) => (
                 <li
-                  key={item}
+                  key={index}
                   className="relative group cursor-pointer hover:text-primary transition-all duration-300"
                 >
-                  {item}
+                  {item.label}
                 </li>
               ))}
 

@@ -40,7 +40,7 @@ export default function Home() {
       {/* TOP STRIP */}
       <motion.div
         style={{ scaleX }}
-        className="fixed top-0 left-0 h-1 transition-all duration-500 bg-primary z-50 origin-left w-full"
+        className="fixed top-0 left-0 h-1 transition-all ease-in duration-300 bg-primary z-50 origin-left w-full"
       />
 
       {/* HERO SECTION */}
@@ -120,7 +120,7 @@ export default function Home() {
             </Link>
 
             <Link
-              href=""
+              href="#about"
               className="py-3 px-8 bg-base border border-borderclr hover:bg-primary font-medium hover:text-[#0b1c24] rounded-full transition-all duration-300"
             >
               Book Call
@@ -129,7 +129,10 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section className="min-h-screen  bg-background pt-10 md:pt-20">
+      <section
+        id="about"
+        className="min-h-screen  bg-background pt-10 md:pt-20 scroll-mt-32"
+      >
         <div className="container text-center capitalize ">
           <h3 className="text-white text-4xl md:text-6xl font-bold tracking-wide leading-10 md:leading-20">
             About Me
@@ -141,17 +144,31 @@ export default function Home() {
           </h2>
           <div className="flex flex-col md:flex-row gap-10 items-center md:items-start text-center md:text-start text-txt mt-15">
             <div className=" border-primary border-3 p-2 w-fit rounded-4xl shadow-2xl shadow-primary rotate-4 transition-all">
-              <figure className="relative md:h-[400px] md:w-[290px] h-[300px] w-[220px]
- rounded-4xl overflow-hidden ">
+              <figure
+                className="relative md:h-[400px] md:w-[290px] h-[300px] w-[220px]
+ rounded-4xl overflow-hidden "
+              >
                 <Image src={aboutimg} alt="img" fill />
               </figure>
             </div>
             <div className=" py-5 flex flex-col gap-4">
-
-            <h4 className="text-primary font-semibold text-3xl md:text-4xl">Summary</h4>
-            <p className="text-[18px] md:text-[20px] text-txtdim tracking-wide leading-loose font-medium">Hello! My name is Owais, and I am a passionate freelance MERN stack developer with a focus on React.js. Over the years, I have honed my skills in frontend development, ensuring seamless user experiences, and backend development, creating robust and scalable server-side solutions. I have knowledge and experience in building dynamic and responsive web applications using modern technologies like React, Node.js, Express, and MongoDB.
-
-I enjoy transforming ideas into functional web applications and am always eager to learn and explore new technologies in the web development ecosystem. My goal is to create applications that not only work efficiently but also provide intuitive and engaging user experiences.</p>
+              <h4 className="text-primary font-semibold text-3xl md:text-4xl">
+                Summary
+              </h4>
+              <p className="text-[18px] md:text-[20px] text-txtdim tracking-wide leading-loose font-medium">
+                Hello! My name is Owais, and I am a passionate freelance MERN
+                stack developer with a focus on React.js. Over the years, I have
+                honed my skills in frontend development, ensuring seamless user
+                experiences, and backend development, creating robust and
+                scalable server-side solutions. I have knowledge and experience
+                in building dynamic and responsive web applications using modern
+                technologies like React, Node.js, Express, and MongoDB. I enjoy
+                transforming ideas into functional web applications and am
+                always eager to learn and explore new technologies in the web
+                development ecosystem. My goal is to create applications that
+                not only work efficiently but also provide intuitive and
+                engaging user experiences.
+              </p>
             </div>
           </div>
         </div>
