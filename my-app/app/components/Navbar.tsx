@@ -6,8 +6,12 @@ import Image from "next/image";
 
 const navLinks = ["Tech Stack", "Experience", "Education", "Projects"];
 
-const Navbar = () => {
-  const [open, setOpen] = useState(false);
+interface NavbarProps {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ isOpen, setIsOpen }) => {
   const [scrolled, setScrolled] = useState(false);
   const { scrollY } = useScroll();
 
@@ -38,7 +42,9 @@ const Navbar = () => {
           <span className="relative h-10 w-10 rounded-full overflow-hidden border-2 border-borderclr group-hover:border-primary transition">
             <Image src={navImg} alt="profile" fill className="object-cover" />
           </span>
-          Owais Shaikh <span className="text-primary">.</span>
+          <p>
+            Owais Shaikh<span className="text-primary">.</span>
+          </p>
         </div>
 
         {/* Desktop Menu */}
@@ -63,33 +69,61 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-2xl" onClick={() => setOpen(true)}>
+        <button
+          className="md:hidden text-xl hover:text-primary"
+          onClick={() => setIsOpen(true)}
+        >
           ☰
         </button>
 
         {/* Mobile Menu */}
-        {open && (
-          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center md:hidden">
+        {isOpen && (
+          <motion.div
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center md:hidden"
+            initial={{ x: "100%", opacity: 0 }} // Start off-screen to the right
+            animate={{ x: 0, opacity: 1 }} // Slide to original position
+            exit={{ x: "100%", opacity: 0 }} // Optional: animate exit back to right
+            transition={{
+              type: "spring",
+              stiffness: 120,
+              damping: 20,
+            }}
+          >
             <button
-              onClick={() => setOpen(false)}
-              className="absolute top-6 right-6 text-3xl text-primary transition hover:rotate-90"
+              onClick={() => setIsOpen(false)}
+              className="absolute top-6 right-6 text-xl text-txt hover:text-primary  transition hover:rotate-90"
             >
               ✕
             </button>
+            <ul className="flex flex-col items-center gap-8 text-2xl font-semibold text-txt">
+              <span className="relative h-25 w-25 rounded-full overflow-hidden border-2 border-primary  ">
+                <Image
+                  src={navImg}
+                  alt="profile"
+                  fill
+                  className="object-cover"
+                />
+              </span>
 
-            <ul className="flex flex-col items-center gap-8 text-lg text-txt">
               {navLinks.map((item) => (
-                <li key={item} className="relative group cursor-pointer">
+                <li
+                  key={item}
+                  className="relative group cursor-pointer hover:text-primary transition-all duration-300"
+                >
                   {item}
-                  <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
                 </li>
               ))}
 
-              <button className="mt-6 rounded-full border border-borderclr px-8 py-3 text-sm transition-all duration-300 hover:border-primary hover:text-white">
+              <button
+                className="mt-6 rounded-full bg-primary px-8 py-4 text-lg text-black 
+                    shadow-[0_10px_20px_rgba(0,0,0,0.25)] 
+                    hover:shadow-[0_15px_25px_rgba(0,0,0,0.35)] 
+                    transition-shadow duration-300"
+              >
                 Let’s talk
               </button>
             </ul>
-          </div>
+          </motion.div>
         )}
       </nav>
     </motion.header>

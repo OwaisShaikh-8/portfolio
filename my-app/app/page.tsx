@@ -49,11 +49,11 @@ export default function Home() {
         </div>
 
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(106,227,255,0.08)_0%,transparent_60%)] z-[1]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(106,227,255,0.08)_0%,transparent_60%)] z-1]" />
 
         {/* Content layer */}
         <motion.div
-          className="relative z-10 flex flex-col pt-32 pb-20 md:pb-45  md:pt-40 container text-center"
+          className="relative z-10 flex flex-col pt-32 pb-16 md:pb-40  md:pt-40 container text-center"
           variants={fadeInVariants}
           initial="hidden"
           animate="visible"
@@ -94,12 +94,12 @@ export default function Home() {
             problems.
           </motion.p>
           <motion.div className="flex flex-col w-full md:w-fit md:flex-row mx-auto text-txt gap-4">
-       <Link
-  href="#"
-  className="
+            <Link
+              href="#"
+              className="
     py-3 px-8
     rounded-full
-    font-bold uppercase
+    font-bold 
     text-[#0b1c24]
     bg-gradient-to-r from-[#6ae3ff] via-[#38c7e0] to-[#6ae3ff]
     bg-[length:200%_auto]
@@ -108,17 +108,34 @@ export default function Home() {
     hover:-translate-y-1
     hover:shadow-[0_12px_28px_rgba(106,227,255,0.45)]
     active:translate-y-0
-    inline-block
+   group
     text-center
+    flex gap-4
+    justify-center
   "
->
-  View Selected Work
-</Link>
-
+            >
+              View Selected Work
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="none"
+                  stroke="#0b1c24"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M5 12h14m-6 6l6-6m-6-6l6 6"
+                  className="group-hover:translate-x-1 transition-all duration-300"
+                />
+              </svg>
+            </Link>
 
             <Link
               href=""
-              className="py-3 px-8 bg-base border border-borderclr hover:bg-primary hover:text-[#0b1c24] rounded-full transition-all duration-300"
+              className="py-3 px-8 bg-base border border-borderclr hover:bg-primary font-medium hover:text-[#0b1c24] rounded-full transition-all duration-300"
             >
               Book Call
             </Link>
