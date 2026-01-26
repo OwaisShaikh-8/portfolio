@@ -1,5 +1,11 @@
 "use client";
-import { motion, useScroll, useTransform, Variant, Variants } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  Variant,
+  Variants,
+} from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import { useScrolling } from "./hooks/navbar-scroll";
 import ParticlesBackground from "./components/ParticlesBackground";
@@ -20,7 +26,11 @@ export default function Home() {
 
   const childVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
   };
 
   return (
@@ -32,7 +42,7 @@ export default function Home() {
       />
 
       {/* HERO SECTION */}
-      <section className="relative h-screen overflow-hidden">
+      <section className="relative  overflow-hidden">
         {/* Particles in the background */}
         <div className="absolute inset-0 z-0">
           <ParticlesBackground />
@@ -43,7 +53,7 @@ export default function Home() {
 
         {/* Content layer */}
         <motion.div
-          className="relative z-10 flex flex-col pt-32 md:pt-40 container text-center"
+          className="relative z-10 flex flex-col pt-32 pb-20 md:pb-45  md:pt-40 container text-center"
           variants={fadeInVariants}
           initial="hidden"
           animate="visible"
@@ -57,7 +67,7 @@ export default function Home() {
           </motion.span>
 
           <motion.h1
-            className="text-center h-[110px] mt-[30px] mb-0 md:mb-[10px] text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tight mx-auto bg-gradient-to-b from-white to-[#7c7b7b] bg-clip-text text-transparent"
+            className="text-center h-[110px] mt-[30px] mb-0 md:mb-[20px] text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tight mx-auto bg-gradient-to-b from-white to-[#7c7b7b] bg-clip-text text-transparent"
             variants={childVariants}
           >
             <Typewriter
@@ -83,16 +93,36 @@ export default function Home() {
             about building high-performance applications and solving complex
             problems.
           </motion.p>
-              <motion.div className="flex flex-col md:flex-row mx-auto text-txt gap-4">
-              <Link href="" className="py-4 px-6 button-87 rounded-full">
-              View Selected Work
-              </Link>
-              <Link href="" className="py-4 px-6 bg-base border border-borderclr rounded-full">
+          <motion.div className="flex flex-col w-full md:w-fit md:flex-row mx-auto text-txt gap-4">
+       <Link
+  href="#"
+  className="
+    py-3 px-8
+    rounded-full
+    font-bold uppercase
+    text-[#0b1c24]
+    bg-gradient-to-r from-[#6ae3ff] via-[#38c7e0] to-[#6ae3ff]
+    bg-[length:200%_auto]
+    transition-all duration-300 ease-in-out
+    hover:bg-right
+    hover:-translate-y-1
+    hover:shadow-[0_12px_28px_rgba(106,227,255,0.45)]
+    active:translate-y-0
+    inline-block
+    text-center
+  "
+>
+  View Selected Work
+</Link>
+
+
+            <Link
+              href=""
+              className="py-3 px-8 bg-base border border-borderclr hover:bg-primary hover:text-[#0b1c24] rounded-full transition-all duration-300"
+            >
               Book Call
-              </Link>
-
-              </motion.div>
-
+            </Link>
+          </motion.div>
         </motion.div>
       </section>
 
