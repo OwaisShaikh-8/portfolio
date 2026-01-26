@@ -16,13 +16,23 @@ import aboutimg from "@/public/assets/images/web.jpg";
 export default function Home() {
   const scaleX = useScrolling();
 
-  // Fade-in variants for hero content
-  const fadeInVariants: Variants = {
-    hidden: { opacity: 0, y: 20 }, // start slightly down & invisible
+  // Page load (Hero)
+  const heroVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: { duration: 1, ease: "easeOut", staggerChildren: 0.2 },
+    },
+  };
+
+  // Scroll sections
+  const scrollVariants: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 2, ease: "easeOut", staggerChildren: 0.15 },
     },
   };
 
@@ -44,7 +54,7 @@ export default function Home() {
       />
 
       {/* HERO SECTION */}
-      <section className="relative  overflow-hidden">
+      <section id="home" className="relative  overflow-hidden">
         {/* Particles in the background */}
         <div className="absolute inset-0 z-0">
           <ParticlesBackground />
@@ -56,7 +66,7 @@ export default function Home() {
         {/* Content layer */}
         <motion.div
           className="relative z-10 flex flex-col pt-32 pb-16 md:pb-40  md:pt-40 container text-center"
-          variants={fadeInVariants}
+          variants={heroVariants}
           initial="hidden"
           animate="visible"
         >
@@ -120,7 +130,7 @@ export default function Home() {
             </Link>
 
             <Link
-              href="#about"
+              href=""
               className="py-3 px-8 bg-base border border-borderclr hover:bg-primary font-medium hover:text-[#0b1c24] rounded-full transition-all duration-300"
             >
               Book Call
@@ -129,19 +139,28 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section
-        id="about"
-        className="min-h-screen  bg-background pt-10 md:pt-20 scroll-mt-32"
-      >
-        <div className="container text-center capitalize ">
-          <h3 className="text-white text-4xl md:text-6xl font-bold tracking-wide leading-10 md:leading-20">
+      <section id="about" className="  pt-10 md:pt-20 pb-40 ">
+        <motion.div
+          className="container text-center capitalize "
+          variants={scrollVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+        >
+          <motion.h3
+            className="text-white text-4xl md:text-6xl font-bold tracking-wide leading-10 md:leading-20"
+            variants={childVariants}
+          >
             About Me
-          </h3>
-          <h2 className="text-primary tracking-wider text-xl md:text-2xl font-medium">
+          </motion.h3>
+          <motion.h2
+            className="text-primary tracking-wider text-xl md:text-2xl font-medium"
+            variants={childVariants}
+          >
             Let me give you a brief insight into{" "}
             <span className="text-txt italic ">who I am</span> and{" "}
             <span className="text-txt italic">what I do</span>{" "}
-          </h2>
+          </motion.h2>
           <div className="flex flex-col md:flex-row gap-10 items-center md:items-start text-center md:text-start text-txt mt-15">
             <div className=" border-primary border-3 p-2 w-fit rounded-4xl shadow-2xl shadow-primary rotate-4 transition-all">
               <figure
@@ -171,6 +190,18 @@ export default function Home() {
               </p>
             </div>
           </div>
+        </motion.div>
+      </section>
+      <section id="tech" className="bg-baseSecondary  pt-10 md:pt-20 pb-40">
+        <div className="container text-center">
+          <h3 className="text-white text-4xl md:text-6xl font-bold tracking-wide leading-10 md:leading-20">
+            Teck Stack
+          </h3>
+          <h2 className="text-primary tracking-wider text-xl md:text-2xl font-medium">
+            Leveraging modern technologies to build{" "}
+            <span className="italic text-txt">robust</span> and{" "}
+            <span className="italic text-txt">scalable</span> applications
+          </h2>
         </div>
       </section>
     </div>

@@ -1,9 +1,15 @@
 "use client";
 import navImg from "@/public/assets/images/nav-img.jpg";
 import React, { useState } from "react";
-import { motion, useScroll, useMotionValueEvent,AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useMotionValueEvent,
+  AnimatePresence,
+} from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { handleNavClick } from "../hooks/navbar-scroll";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -12,7 +18,6 @@ const navLinks = [
   { label: "Education", href: "#education" },
   { label: "Projects", href: "#projects" },
 ];
-
 
 interface NavbarProps {
   isOpen: boolean;
@@ -46,27 +51,32 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, setIsOpen }) => {
     >
       <nav className="container mx-auto flex items-center justify-between px-4 py-5 text-txt">
         {/* Logo */}
-        <div className="flex items-center gap-3 font-bold text-lg cursor-pointer group">
+        <Link
+          className="flex items-center gap-3 font-bold text-lg cursor-pointer group"
+          href=""
+          onClick={(e) => handleNavClick(e, "#home")}
+        >
           <span className="relative h-10 w-10 rounded-full overflow-hidden border-2 border-borderclr group-hover:border-primary transition">
             <Image src={navImg} alt="profile" fill className="object-cover" />
           </span>
           <p>
             Owais Shaikh<span className="text-primary">.</span>
           </p>
-        </div>
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-10">
           <ul className="flex gap-8 text-txtdim">
-            {navLinks.map((item,index) => (
+            {navLinks.map((item, index) => (
               <li key={index} className="relative group">
                 <Link
-                  href={item.href}
+                  href=""
                   className="inline-block transition-colors duration-300 group-hover:text-txt"
                   scroll={true}
+                  onClick={(e) => handleNavClick(e, item.href)}
                 >
                   {item.label}
-                  <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
                 </Link>
               </li>
             ))}
@@ -84,57 +94,57 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, setIsOpen }) => {
         >
           ☰
         </button>
-<AnimatePresence>
-
-
-        {/* Mobile Menu */}
-        {isOpen && (
-          <motion.div
-            className="absolute w-screen h-screen top-0 left-0 right-0 bottom-0 z-50 bg-black/90 backdrop-blur-xl flex items-center justify-center md:hidden"
-            initial={{ x: "100%", rotate: 90, opacity: 0 }} // start off-screen and rotated
-            animate={{ x: 0, rotate: 0, opacity: 1 }} // slide in and straighten
-            exit={{ x: "100%", rotate: 90, opacity: 0 }} // slide out with roll
-            transition={{
-              type: "spring",
-              stiffness: 120,
-              damping: 20,
-            }}
-          >
-            <button
-              onClick={() => setIsOpen(false)}
-              className="absolute top-6 right-6 text-xl text-txt hover:text-primary  transition hover:rotate-90"
+        <AnimatePresence>
+          {/* Mobile Menu */}
+          {isOpen && (
+            <motion.div
+              className="absolute w-screen h-screen top-0 left-0 right-0 bottom-0 z-50 bg-black/90 backdrop-blur-xl flex items-center justify-center md:hidden"
+              initial={{ x: "100%", rotate: 90, opacity: 0 }} // start off-screen and rotated
+              animate={{ x: 0, rotate: 0, opacity: 1 }} // slide in and straighten
+              exit={{ x: "100%", rotate: 90, opacity: 0 }} // slide out with roll
+              transition={{
+                type: "spring",
+                stiffness: 120,
+                damping: 20,
+              }}
             >
-              ✕
-            </button>
-            <ul className="flex flex-col items-center gap-8 text-2xl font-semibold text-txt">
-              <span className="relative h-25 w-25 rounded-full overflow-hidden border-2 border-primary  ">
-                <Image
-                  src={navImg}
-                  alt="profile"
-                  fill
-                  className="object-cover"
-                />
-              </span>
-
-              {navLinks.map((item,index) => (
-                <li
-                  key={index}
-                  className="relative group cursor-pointer hover:text-primary transition-all duration-300"
-                >
-                  {item.label}
-                </li>
-              ))}
-
               <button
-                className="mt-6 rounded-full bg-primary px-8 py-4 text-lg text-black 
+                onClick={() => setIsOpen(false)}
+                className="absolute top-6 right-6 text-xl text-txt hover:text-primary  transition hover:rotate-90"
+              >
+                ✕
+              </button>
+              <ul className="flex flex-col items-center gap-8 text-2xl font-semibold text-txt">
+                <span className="relative h-25 w-25 rounded-full overflow-hidden border-2 border-primary  ">
+                  <Image
+                    src={navImg}
+                    alt="profile"
+                    fill
+                    className="object-cover"
+                  />
+                </span>
+
+                {navLinks.map((item, index) => (
+                  <li
+                    key={index}
+                    className="relative group cursor-pointer hover:text-primary transition-all duration-300"
+                  >
+                    <Link href="" onClick={(e) => handleNavClick(e, item.href,() => setIsOpen(false))}>
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+
+                <button
+                  className="mt-6 rounded-full bg-primary px-8 py-4 text-lg text-black 
                     shadow-2xl
                     transition-shadow duration-300"
-              >
-                Let’s talk
-              </button>
-            </ul>
-          </motion.div>
-        )}
+                >
+                  Let’s talk
+                </button>
+              </ul>
+            </motion.div>
+          )}
         </AnimatePresence>
       </nav>
     </motion.header>
