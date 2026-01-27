@@ -12,6 +12,8 @@ import ParticlesBackground from "./components/ParticlesBackground";
 import Link from "next/link";
 import Image from "next/image";
 import aboutimg from "@/public/assets/images/web.jpg";
+import SkillCard from "./components/SkillCard";
+import { skillsData } from "./components/SkillCard";
 
 export default function Home() {
   const scaleX = useScrolling();
@@ -70,18 +72,12 @@ export default function Home() {
           initial="hidden"
           animate="visible"
         >
-          <motion.span
-            className="floatingspan text-[12px] flex items-center gap-3 tracking-widest leading-4 py-2 px-4 border w-fit mx-auto rounded-full border-borderclr font-bold uppercase text-white"
-            variants={childVariants}
-          >
+          <motion.span className="floatingspan text-[12px] flex items-center gap-3 tracking-widest leading-4 py-2 px-4 border w-fit mx-auto rounded-full border-borderclr font-bold uppercase text-white">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse-slow"></span>
             Available for Collaboration
           </motion.span>
 
-          <motion.h1
-            className="text-center h-[110px] mt-[30px] mb-0 md:mb-[20px] text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tight mx-auto bg-gradient-to-b from-white to-[#7c7b7b] bg-clip-text text-transparent"
-            variants={childVariants}
-          >
+          <motion.h1 className="text-center h-[110px] mt-[30px] mb-0 md:mb-[20px] text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tight mx-auto bg-gradient-to-b from-white to-[#7c7b7b] bg-clip-text text-transparent">
             <Typewriter
               words={[
                 "Mern Stack Developer",
@@ -97,10 +93,7 @@ export default function Home() {
             />
           </motion.h1>
 
-          <motion.p
-            className="text-txtdim text-[18px] md:text-[20px] max-w-2xl mx-auto mb-10"
-            variants={childVariants}
-          >
+          <motion.p className="text-txtdim text-[18px] md:text-[20px] max-w-2xl mx-auto mb-10">
             Crafting scalable solutions with modern technologies. Passionate
             about building high-performance applications and solving complex
             problems.
@@ -139,7 +132,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section id="about" className="  pt-10 md:pt-20 pb-40 ">
+      <section id="about" className="  pt-10 md:pt-20 pb-10 md:pb-40 ">
         <motion.div
           className="container text-center capitalize "
           variants={scrollVariants}
@@ -147,25 +140,19 @@ export default function Home() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.25 }}
         >
-          <motion.h3
-            className="text-white text-4xl md:text-6xl font-bold tracking-wide leading-10 md:leading-20"
-            variants={childVariants}
-          >
+          <motion.h3 className="text-white text-4xl md:text-6xl font-bold tracking-wide leading-10 md:leading-20">
             About Me
           </motion.h3>
-          <motion.h2
-            className="text-primary tracking-wider text-xl md:text-2xl font-medium"
-            variants={childVariants}
-          >
+          <motion.h2 className="text-primary tracking-wider text-xl md:text-2xl font-medium">
             Let me give you a brief insight into{" "}
             <span className="text-txt italic ">who I am</span> and{" "}
             <span className="text-txt italic">what I do</span>{" "}
           </motion.h2>
           <div className="flex flex-col md:flex-row gap-10 items-center md:items-start text-center md:text-start text-txt mt-15">
-            <div className=" border-primary border-3 p-2 w-fit rounded-4xl shadow-2xl shadow-primary rotate-4 transition-all">
+            <div className=" animate-border-pulse p-2 w-fit rounded-4xl shadow-2xl shadow-primary rotate-4 transition-all">
               <figure
-                className="relative md:h-[400px] md:w-[290px] h-[300px] w-[220px]
- rounded-4xl overflow-hidden "
+                className="relative  md:h-[400px] md:w-[290px] h-[300px] w-[220px]
+ rounded-3xl overflow-hidden "
               >
                 <Image src={aboutimg} alt="img" fill />
               </figure>
@@ -192,8 +179,14 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
-      <section id="tech" className="bg-baseSecondary  pt-10 md:pt-20 pb-40">
-        <div className="container text-center">
+      <section id="tech" className="bg-baseSecondary  pt-10 md:pt-20 pb-40 ">
+        <motion.div
+          className="container text-center"
+          variants={scrollVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+        >
           <h3 className="text-white text-4xl md:text-6xl font-bold tracking-wide leading-10 md:leading-20">
             Teck Stack
           </h3>
@@ -202,7 +195,13 @@ export default function Home() {
             <span className="italic text-txt">robust</span> and{" "}
             <span className="italic text-txt">scalable</span> applications
           </h2>
-        </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:mt-20 mt-10">
+                  {skillsData.map((skill) => <SkillCard key={skill.id} {...skill} />)}
+              </div>
+        
+
+        </motion.div>
       </section>
     </div>
   );

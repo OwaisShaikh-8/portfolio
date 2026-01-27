@@ -43,3 +43,21 @@ body {
   animation: floatUpDown 2s cubic-bezier(0.4, 0, 0.6, 1) infinite
 }
 
+.animate-border-pulse {
+  border-width: 4px;
+  border-style: solid;
+  border-color: #6ae3ff; /* initial border color */
+  animation: borderPulse 4s ease-in-out infinite;
+}
+
+@keyframes borderPulse {
+  0% {
+    border-color: #6ae3ff;
+  }
+  50% {
+    border-color: #fdffff;
+  }
+  100% {
+    border-color: rgb(4, 174, 226);
+  }
+}
