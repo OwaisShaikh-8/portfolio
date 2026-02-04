@@ -53,9 +53,9 @@ export const skillsData: SkillCardType[] = [
 
 const SkillCard: React.FC<SkillCardType> = ({ icon, heading, list }) => {
   return (
-    <div className="text-white p-8 h-[300px] border border-borderclr bg-black/30 hover:bg-base rounded-3xl hover:border-primary text-start group hover:-translate-y-1 transition-transform duration-500">
+    <div className="text-white p-8 h-[300px] border border-borderclr bg-black/30 hover:bg-base rounded-3xl hover:border-primary active:border-primary text-start group hover:-translate-y-1 active:-translate-y-1 transition-transform duration-500">
       {/* Icon */}
-      <div className="w-10 h-10 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">{icon}</div>
+      <div className="w-10 h-10 group-hover:rotate-12 group-hover:scale-110 group-active:rotate-12 group-active:scale-110 transition-all duration-300">{icon}</div>
 
       {/* Heading */}
       <h3 className="mt-4 mb-3 text-[24px] font-bold">{heading}</h3>
@@ -64,7 +64,7 @@ const SkillCard: React.FC<SkillCardType> = ({ icon, heading, list }) => {
       <ul className="list-disc text-[16px] text-txtdim marker:text-primary flex flex-col gap-1 pl-4">
         {list.map((item, index) => (
           <li
-            className="hover:translate-x-2 transition-all duration-300 hover:text-primary"
+            className="hover:translate-x-2 active:translate-x-2 transition-all duration-300 hover:text-primary active:text-primary"
             key={index}
           >
             {item}
