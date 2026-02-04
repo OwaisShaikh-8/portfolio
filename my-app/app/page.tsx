@@ -14,7 +14,10 @@ import Image from "next/image";
 import aboutimg from "@/public/assets/images/web.jpg";
 import SkillCard from "./components/SkillCard";
 import { skillsData } from "./components/SkillCard";
-
+import StackCard from "./components/StackCard";
+import { stackData } from "./components/StackCard";
+import ExperienceCard from "./components/ExperienceCard";
+import { experienceData } from "./components/ExperienceCard";
 export default function Home() {
   const scaleX = useScrolling();
 
@@ -64,7 +67,6 @@ export default function Home() {
 
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(106,227,255,0.08)_0%,transparent_60%)] z-1]" />
-
         {/* Content layer */}
         <motion.div
           className="relative z-10 flex flex-col pt-32 pb-16 md:pb-40  md:pt-40 container text-center"
@@ -179,7 +181,10 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
-      <section id="tech" className="bg-baseSecondary  pt-10 md:pt-20 pb-40 ">
+      <section
+        id="tech"
+        className="bg-baseSecondary  pt-10 md:pt-20 md:pb-30 pb-10  "
+      >
         <motion.div
           className="container text-center"
           variants={scrollVariants}
@@ -195,12 +200,41 @@ export default function Home() {
             <span className="italic text-txt">robust</span> and{" "}
             <span className="italic text-txt">scalable</span> applications
           </h2>
+          <div className="flex flex-col gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-5 md:mt-20 mt-10">
+              {skillsData.map((skill) => (
+                <SkillCard key={skill.id} {...skill} />
+              ))}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {stackData.map((stack) => (
+                <StackCard key={stack.id} {...stack} />
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </section>
+      <section className="pt-10 md:pt-20 md:pb-30 pb-10">
+        <motion.div
+          className="container text-center"
+          variants={scrollVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+        >
+          <h3 className="text-white text-4xl md:text-6xl font-bold tracking-wide leading-10 md:leading-20">
+            Work Experience
+          </h3>
+          <h2 className="text-primary tracking-wider text-xl md:text-2xl font-medium">
+            My professional journey in{" "}
+            <span className="italic text-txt">software</span> development
+          </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:mt-20 mt-10">
-                  {skillsData.map((skill) => <SkillCard key={skill.id} {...skill} />)}
-              </div>
-        
-
+          <div className="flex flex-col gap-5 items-center mt-20">
+            {[...experienceData].reverse().map((item) => (
+              <ExperienceCard key={item.id} {...item} />
+            ))}
+          </div>
         </motion.div>
       </section>
     </div>
