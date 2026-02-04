@@ -54,7 +54,7 @@ const ExperienceCard: React.FC<ExperienceCardType> = ({ designation, company,dur
       <ul className="flex flex-wrap gap-2">
         {
             skills.map((item,index) => (
-                <li key={index} className="border text-[14px] border-borderclr  rounded-full px-4 py-3 bg-baseSecondary hover:-translate-y-1 hover:text-primary hover:bg-[#06586b] transition-all duration-300 mt-2 ">
+                <li key={index} className="border text-[14px] border-borderclr  text-txtdim rounded-full px-4 py-3 bg-baseSecondary hover:-translate-y-1 hover:text-primary hover:bg-[#06586b] transition-all duration-300 mt-2 ">
                     {item}
                 </li>
             ))

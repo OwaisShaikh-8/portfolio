@@ -18,6 +18,7 @@ import StackCard from "./components/StackCard";
 import { stackData } from "./components/StackCard";
 import ExperienceCard from "./components/ExperienceCard";
 import { experienceData } from "./components/ExperienceCard";
+import EducationCard, { educationData } from "./components/EducationCard";
 export default function Home() {
   const scaleX = useScrolling();
 
@@ -37,7 +38,7 @@ export default function Home() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 2, ease: "easeOut", staggerChildren: 0.15 },
+      transition: { duration: 1, ease: "easeOut", staggerChildren: 0.15 },
     },
   };
 
@@ -183,7 +184,7 @@ export default function Home() {
       </section>
       <section
         id="tech"
-        className="bg-baseSecondary  pt-10 md:pt-20 md:pb-30 pb-10  "
+        className="bg-baseSecondary  pt-10 md:pt-20 md:pb-30 pb-20  "
       >
         <motion.div
           className="container text-center"
@@ -200,8 +201,8 @@ export default function Home() {
             <span className="italic text-txt">robust</span> and{" "}
             <span className="italic text-txt">scalable</span> applications
           </h2>
-          <div className="flex flex-col gap-5">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-5 md:mt-20 mt-10">
+          <div className="flex flex-col gap-5 md:mt-20 mt-10">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-5 ">
               {skillsData.map((skill) => (
                 <SkillCard key={skill.id} {...skill} />
               ))}
@@ -214,7 +215,7 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
-      <section className="pt-10 md:pt-20 md:pb-30 pb-10">
+      <section id="experience" className="pt-10 md:pt-20 md:pb-30 pb-10">
         <motion.div
           className="container text-center"
           variants={scrollVariants}
@@ -226,13 +227,38 @@ export default function Home() {
             Work Experience
           </h3>
           <h2 className="text-primary tracking-wider text-xl md:text-2xl font-medium">
-            My professional journey in{" "}
+            An overview of my professional journey in{" "}
             <span className="italic text-txt">software</span> development
           </h2>
 
-          <div className="flex flex-col gap-5 items-center mt-20">
+          <div className="flex flex-col gap-5 items-center md:mt-20 mt-10">
             {[...experienceData].reverse().map((item) => (
               <ExperienceCard key={item.id} {...item} />
+            ))}
+          </div>
+        </motion.div>
+      </section>
+      <section id="education" className="pt-10 md:pt-20 md:pb-30 pb-10 bg-baseSecondary">
+        <motion.div
+          className="container text-center"
+          variants={scrollVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+        >
+          <h3 className="text-white text-4xl md:text-6xl font-bold tracking-wide leading-10 md:leading-20">
+            Education
+          </h3>
+          <h2 className="text-primary tracking-wider text-xl md:text-2xl font-medium">
+            Let’s take a look at my {" "}
+            <span className="italic text-txt">education</span>
+             {" "} and {" "}
+            <span className="italic text-txt">certifications.</span> 
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto gap-5 items-center md:mt-20 mt-10">
+            {educationData.map((item) => (
+              <EducationCard key={item.id} {...item} />
             ))}
           </div>
         </motion.div>
