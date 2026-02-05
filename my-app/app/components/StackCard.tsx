@@ -33,7 +33,7 @@ export const stackData: StackCardType[] = [
 
 const StackCard: React.FC<StackCardType> = ({ icon, heading, detail }) => {
   return (
-    <div className="text-white p-8  border border-borderclr bg-black/30 hover:bg-base rounded-3xl hover:border-primary text-start group hover:-translate-y-1 transition-transform duration-500">
+    <div className="text-white p-8  border border-borderclr bg-black/30 hover:bg-base active:bg-base rounded-3xl hover:border-primary active:border-primary text-start group hover:-translate-y-1 active:-translate-y-1 transition-transform duration-500">
      
       <div className=" w-fit p-5 rounded-2xl transition-all duration-300 bg-[#06586b]">{icon}</div>
 

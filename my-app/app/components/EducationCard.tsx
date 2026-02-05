@@ -54,7 +54,7 @@ export const educationData: EducationCardType[] = [
 
 const EducationCard: React.FC<EducationCardType> = ({ icon,title, institute,duration, detail, achievements }) => {
   return (
-    <div className=" bg-black/30 hover:bg-base text-white p-8  min-h-[450px] border border-borderclr   rounded-3xl hover:border-primary text-start  transition-all duration-600 max-w-5xl">
+    <div className=" bg-black/30 hover:bg-base text-white p-8  min-h-[450px] border border-borderclr   rounded-3xl hover:border-primary active:border-primary text-start  transition-all duration-600 max-w-5xl">
      
     {
         icon
@@ -82,7 +82,7 @@ const EducationCard: React.FC<EducationCardType> = ({ icon,title, institute,dura
       <ul className="flex flex-col text-txtdim list-disc text-[14px] gap-2 pl-5 marker:text-primary">
         {
             achievements.map((item,index) => (
-                <li key={index} className="hover:text-primary ">
+                <li key={index} className="hover:text-primary  active:text-primary ">
                     {item}
                 </li>
             ))

@@ -34,7 +34,7 @@ export const experienceData: ExperienceCardType[] = [
 
 const ExperienceCard: React.FC<ExperienceCardType> = ({ designation, company,duration, detail, skills }) => {
   return (
-    <div className="text-white p-8  border border-borderclr   rounded-3xl hover:border-primary text-start  transition-all duration-600 max-w-5xl">
+    <div className="text-white p-8  border border-borderclr   rounded-3xl hover:border-primary active:border-primary  text-start  transition-all duration-600 max-w-5xl">
      
       <div className=" flex flex-col md:flex-row justify-between  gap-2 items-start">
 
@@ -54,7 +54,7 @@ const ExperienceCard: React.FC<ExperienceCardType> = ({ designation, company,dur
       <ul className="flex flex-wrap gap-2">
         {
             skills.map((item,index) => (
-                <li key={index} className="border text-[14px] border-borderclr  text-txtdim rounded-full px-4 py-3 bg-baseSecondary hover:-translate-y-1 hover:text-primary hover:bg-[#06586b] transition-all duration-300 mt-2 ">
+                <li key={index} className="border text-[14px] border-borderclr  text-txtdim rounded-full px-4 py-3 bg-baseSecondary hover:-translate-y-1 active:-translate-y-1 hover:text-primary active:text-primary hover:bg-[#06586b] active:bg-[#06586b] transition-all duration-300 mt-2 ">
                     {item}
                 </li>
             ))
